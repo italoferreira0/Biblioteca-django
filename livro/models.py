@@ -11,6 +11,14 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nome 
 
+class Emprestimo(models.Model):
+    nome_emprestado = models.CharField(max_length=100, blank=True)
+    data_emprestado = models.DateTimeField(blank=True, null=True)
+    data_devolucao = models.DateTimeField(blank=True, null=True)
+    data_duracao = models.DateField(blank=True,null=True)
+    categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+    usuario = models.ForeignKey(Usuarios, on_delete=models.DO_NOTHING)
+
 class Livros(models.Model):
     nome = models.CharField(max_length=100)
     autor = models.CharField(max_length=100)
